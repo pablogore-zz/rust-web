@@ -1,0 +1,29 @@
+[tasks.setup]
+script = [
+    "docker start postgres &>/dev/null || docker run -d --name postgres --net=host postgres:9.6.3"
+]
+
+[tasks.reset]
+script = [
+    "diesel migration redo --database-url postgres://postgres:postgres@localhost:5432/postgres"
+]
+
+[tasks.migrate]
+script = [
+    "diesel migration run --database-url postgres://postgres:postgres@localhost:5432/postgres"
+]
+
+[tasks.schema]
+script = [
+    "diesel print-schema > src/schema.rs --database-url postgres://postgres:postgres@localhost:5432/postgres"
+]
+
+[tasks.psql]
+script = [
+    "docker run --rm -it --net=host postgres:9.6.3 psql -U postgres -h localhost"
+]
+
+[tasks.run]
+script = [
+    "cargo watch -x run"
+]

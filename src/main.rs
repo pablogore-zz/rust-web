@@ -13,6 +13,12 @@ extern crate rocket_cors;
 #[macro_use]
 extern crate diesel;
 
+#[macro_use]
+extern crate juniper;
+#[macro_use]
+extern crate juniper_codegen;
+extern crate juniper_rocket;
+
 extern crate validator;
 #[macro_use]
 extern crate validator_derive;
@@ -26,6 +32,9 @@ extern crate frank_jwt as jwt;
 extern crate rand;
 extern crate slug;
 
+#[macro_use]
+extern crate quick_error;
+
 mod db;
 mod schema;
 mod models;
@@ -35,47 +44,28 @@ mod util;
 mod config;
 mod routes;
 
-use rocket_contrib::{Json, Value};
+use rocket::State;
+use rocket::response::content;
+use juniper_rocket::{graphiql_source, GraphQLRequest, GraphQLResponse};
 
-#[error(404)]
-fn not_found() -> Json<Value> {
-    Json(json!({
-        "status": "error",
-        "reason": "Resource was not found."
-    }))
+#[get("/")]
+fn graphiql() -> content::Html<String> {
+  graphiql_source("/graphql")
+}
+
+#[post("/graphql", data = "<request>")]
+fn graphql(conn: db::Conn, request: GraphQLRequest, schema: State<routes::Schema>) -> GraphQLResponse {
+  let context = routes::context::Context::new(conn);
+  request.execute(&schema, &context)
 }
 
 fn main() {
-    let pool = db::init_pool();
+  let pool = db::init_pool();
+  let schema = routes::init_schema();
 
-    rocket::ignite()
-        .mount(
-            "/api",
-            routes![
-                routes::users::post_users,
-                routes::users::post_users_login,
-                routes::users::put_user,
-                routes::users::get_user,
-                routes::articles::post_articles,
-                routes::articles::put_articles,
-                routes::articles::get_article,
-                routes::articles::delete_article,
-                routes::articles::favorite_article,
-                routes::articles::unfavorite_article,
-                routes::articles::get_articles,
-                routes::articles::get_articles_with_params,
-                routes::articles::get_articles_feed,
-                routes::articles::post_comment,
-                routes::articles::get_comments,
-                routes::articles::delete_comment,
-                routes::tags::get_tags,
-                routes::profiles::get_profile,
-                routes::profiles::follow,
-                routes::profiles::unfollow,
-            ],
-        )
-        .manage(pool)
-        .attach(rocket_cors::Cors::default())
-        .catch(errors![not_found])
-        .launch();
+  rocket::ignite()
+    .mount("/", routes![graphiql, graphql])
+    .manage(pool)
+    .manage(schema)
+    .launch();
 }

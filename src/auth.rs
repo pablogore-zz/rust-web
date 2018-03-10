@@ -3,12 +3,11 @@ use rocket::request::{self, FromRequest, Request};
 
 use jwt;
 use serde_json;
+use config::{SECRET, TOKEN_PREFIX};
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct Auth {
-    /// timestamp
     pub exp: i64,
-    /// user id
     pub id: i32,
     pub username: String,
 }
@@ -20,9 +19,6 @@ impl Auth {
         jwt::encode(header, &SECRET.to_string(), &payload, jwt::Algorithm::HS256).expect("jwt")
     }
 }
-
-const SECRET: &'static str = "secret123";
-const TOKEN_PREFIX: &'static str = "Token ";
 
 impl<'a, 'r> FromRequest<'a, 'r> for Auth {
     type Error = ();

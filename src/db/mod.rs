@@ -3,10 +3,8 @@ pub mod profiles;
 pub mod articles;
 pub mod comments;
 
-use dotenv::dotenv;
 use std::ops::Deref;
 
-use std::env;
 use diesel::pg::PgConnection;
 use diesel::r2d2::{self, ConnectionManager};
 
@@ -14,13 +12,12 @@ use rocket::http::Status;
 use rocket::request::{self, FromRequest};
 use rocket::{Outcome, Request, State};
 
+use config::database_url;
+
 pub type Pool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
 pub fn init_pool() -> Pool {
-    dotenv().ok();
-
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
-    let manager = ConnectionManager::<PgConnection>::new(database_url);
+    let manager = ConnectionManager::<PgConnection>::new(database_url());
     r2d2::Pool::new(manager).expect("db pool")
 }
 
