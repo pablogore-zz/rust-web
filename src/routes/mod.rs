@@ -1,7 +1,5 @@
-pub mod users;
 pub mod profiles;
 pub mod articles;
-pub mod tags;
 
 pub mod user;
 pub mod query;
