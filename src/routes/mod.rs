@@ -1,4 +1,3 @@
-pub mod profiles;
 pub mod articles;
 
 pub mod user;
