@@ -1,0 +1,29 @@
+{
+  "name": "universal-app",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "start-native": "react-native-scripts start",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios"
+  },
+  "dependencies": {
+    "expo": "^25.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-native": "0.52.0",
+    "react-native-web": "^0.5.1"
+  },
+  "devDependencies": {
+    "babel-plugin-react-native-web": "^0.5.1",
+    "babel-preset-expo": "^4.0.0",
+    "jest-expo": "^25.1.0",
+    "parcel-bundler": "^1.6.2",
+    "react-native-scripts": "^1.11.1"
+  }
+}

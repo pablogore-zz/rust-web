@@ -1,0 +1,65 @@
+query K {
+  currentUser {
+    id
+    name
+    email
+    isVerified
+    isLocked
+  }
+}
+
+mutation signUp {
+  signUp(id:"123", name: "Test", email: "test100@mailinator.com", password: "test") {
+    token
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+
+mutation login {
+  login(email: "test100@mailinator.com", password: "test") {
+    token
+    user {
+      id
+      name
+      email
+      role
+    }
+  }
+}
+
+mutation updateCurrentUser {
+  updateCurrentUser(name: "Test123412", email: "test100@mailinator.com", oldPassword: "test", newPassword: "abcd") {
+    name
+    email
+  }
+}
+
+mutation forgotPasswordEmail {
+  forgotPasswordEmail(email: "test100@mailinator.com")
+}
+
+mutation verifyEmail {
+  verifyEmail(email: "test100@mailinator.com")
+}
+
+mutation unlockEmail {
+  unlockEmail(email: "test100@mailinator.com")
+}
+
+mutation resetPassword {
+	resetPassword(password: "test")
+}
+
+mutation verifyUser {
+  verifyUser
+}
+
+mutation unlockUser {
+  unlockUser
+}

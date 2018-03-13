@@ -1,0 +1,9 @@
+{
+  "presets": ["expo"],
+  "env": {
+    "development": {
+      "plugins": ["react-native-web"]
+    }
+  }
+}
+
