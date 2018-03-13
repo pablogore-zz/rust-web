@@ -1,16 +1,11 @@
 [tasks.setup]
 script = [
-    "docker start postgres &>/dev/null || docker run -d --name postgres --net=host postgres:9.6.3"
+    "docker start postgres &>/dev/null || docker run -d --name postgres --net=host postgres:10.3"
 ]
 
 [tasks.reset]
 script = [
-    "diesel migration redo --database-url postgres://postgres:postgres@localhost:5432/postgres"
-]
-
-[tasks.migrate]
-script = [
-    "diesel migration run --database-url postgres://postgres:postgres@localhost:5432/postgres"
+    "docker rm -f postgres"
 ]
 
 [tasks.schema]
@@ -20,7 +15,7 @@ script = [
 
 [tasks.psql]
 script = [
-    "docker run --rm -it --net=host postgres:9.6.3 psql -U postgres -h localhost"
+    "docker run --rm -it --net=host postgres:10.3 psql -U postgres -h localhost"
 ]
 
 [tasks.run]

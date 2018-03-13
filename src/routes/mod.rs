@@ -1,5 +1,3 @@
-pub mod articles;
-
 pub mod user;
 pub mod query;
 pub mod mutation;
