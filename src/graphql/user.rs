@@ -8,16 +8,8 @@ graphql_object!(User: Context |&self| {
         self.id
     }
 
-    field username() -> &str {
-        &self.username
-    }
-    
     field email() -> &str {
         &self.email
-    }
-
-    field bio() -> &Option<String> {
-        &self.bio
     }
 
     field is_following(&executor) -> FieldResult<bool> {

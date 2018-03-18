@@ -4,7 +4,6 @@ use schema::articles;
 use schema::users;
 use schema::comments;
 use diesel::pg::PgConnection;
-use models::comment::{Comment};
 use models::user::User;
 
 #[derive(Insertable)]

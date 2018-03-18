@@ -47,10 +47,11 @@ mod logger;
 mod db;
 mod schema;
 mod models;
+mod commands;
 mod errors;
 mod utils;
 mod config;
-mod routes;
+mod graphql;
 
 use std::path::PathBuf;
 use std::ffi::OsStr;
@@ -98,8 +99,8 @@ fn graphiql() -> content::Html<String> {
 }
 
 #[post("/graphql", data = "<request>")]
-fn graphql(conn: db::Conn, request: GraphQLRequest, schema: State<routes::Schema>) -> GraphQLResponse {
-  let context = routes::context::Context::new(conn);
+fn graphql(conn: db::Conn, request: GraphQLRequest, schema: State<graphql::Schema>) -> GraphQLResponse {
+  let context = graphql::context::Context::new(conn);
   request.execute(&schema, &context)
 }
 
@@ -107,7 +108,7 @@ fn main() {
   logger::setup();
   let asset = embed!("ui/dist/".to_owned());
   let pool = db::init_pool();
-  let schema = routes::init_schema();
+  let schema = graphql::init_schema();
 
   rocket::ignite()
     .manage(asset)
