@@ -27,7 +27,7 @@ pub struct SignUpResponse {
 //   pub hash: String,
 // }
 
-// pub fn create(conn: &PgConnection, params: SignUpParams) ->
+// pub fn sign_up(conn: &PgConnection, params: SignUpParams) ->
 // Result<SignUpResponse, WebError> {   params.validate()?;
 //   let exists = db::users::exists_by_email(conn, params.email)?;
 //   if exists {

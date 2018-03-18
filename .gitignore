@@ -15,3 +15,5 @@ Cargo.lock
 ui/.cache
 ui/node_modules
 ui/dist
+build
+.gradle

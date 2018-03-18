@@ -1,47 +1,4 @@
 {
-  "expo": {
-    "name": "NCM App",
-    "version": "0.0.0",
-    "slug": "ncm",
-    "description": "An app for NCM ministry",
-    "privacy": "unlisted",
-    "sdkVersion": "25.0.0",
-    "orientation": "portrait",
-    "primaryColor": "#cccccc",
-    "icon": "./assets/icon.png",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#ffffff"
-    },
-    "packagerOpts": {
-      "assetExts": [
-        "ttf",
-        "mp4"
-      ]
-    },
-    "notification": {
-      "icon": "./assets/icon.png",
-      "color": "#000000",
-      "androidMode": "collapse",
-      "androidCollapsedTitle": "#{unread_notifications} notifications."
-    },
-    "android": {
-      "package": "com.ncm.app",
-      "versionCode": 0,
-      "config": {
-        "googleMaps": {
-          "apiKey": ""
-        }
-      }
-    },
-    "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.ncm.app",
-      "buildNumber": "1",
-      "config": {
-        "googleMapsApiKey": ""
-      }
-    }
-  }
+  "name": "ui",
+  "displayName": "ui"
 }
