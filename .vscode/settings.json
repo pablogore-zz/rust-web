@@ -60,7 +60,7 @@
     "suppressUpdateNotice": true,
     "suppressWelcomeNotice": false
   },
-  "workbench.colorTheme": "Dracula Soft",
+  "workbench.colorTheme": "Dracula",
   "git.autofetch": true,
   "gitlens.keymap": "alternate",
   "sqltools.format": {

@@ -4,7 +4,7 @@ use diesel::pg::PgConnection;
 use errors::WebError;
 use schema::{follows, users};
 
-#[derive(Queryable, Clone, Serialize, Deserialize)]
+#[derive(Debug, Queryable, Clone, Serialize, Deserialize)]
 pub struct User {
   pub id: i32,
   pub phone: String,

@@ -103,9 +103,9 @@ fn graphiql() -> content::Html<String> {
   graphiql_source("/graphql")
 }
 
-#[post("/graphql", format = "application/json", data = "<request>")]
+#[post("/graphql", format = "application/json", data = "<request>", rank = 2)]
 fn graphql(conn: db::Conn, request: GraphQLRequest, schema: State<graphql::Schema>) -> GraphQLResponse {
-  let context = graphql::context::Context::new(conn);
+  let context = graphql::context::Context::new(conn, None);
   request.execute(&schema, &context)
 }
 
