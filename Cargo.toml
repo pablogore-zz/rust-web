@@ -1,6 +1,6 @@
 [package]
 authors = ["pyros2097"]
-name = "rust-web"
+name = "ncm"
 version = "0.0.0"
 
 [[bin]]
@@ -14,6 +14,7 @@ colored = "1.6"
 rocket = "0.3.6"
 rocket_codegen = "0.3.6"
 rocket_contrib = "0.3.6"
+rocket_cors = "0.2.1"
 serde = "1.0.26"
 serde_derive = "1.0.26"
 serde_json = "1.0.8"
@@ -23,21 +24,11 @@ chrono = {version = "0.4.0", features = ["serde"]}
 diesel = {version = "1.1.1", features = ["postgres", "chrono", "r2d2"]}
 validator = "0.6.3"
 validator_derive = "0.6.1"
-slug = "0.1.2"
-rand = "0.4.2"
 quick-error = "1.2.1"
-failure = "0.1.1"
-failure_derive = "0.1.1"
 juniper = "0.9.2"
 juniper_codegen = "0.9.2"
 juniper_rocket = "0.1.2"
-rusoto_core = "0.32.0"
-rusoto_sns = "0.32.0"
-rusoto_ses = "0.32.0"
-rusoto_s3 = "0.32.0"
-rust-embed="0.5.2"
+rust-embed="1.1.1"
+reqwest = "0.8.5"
 
-[dev-dependencies]
-reqwest = "0.8.2"
-lazy_static = "1.0.0"
-hyper = "0.11.21"
+

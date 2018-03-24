@@ -1,36 +1,46 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'glamorous-native';
-import { Subscribe } from 'unstated';
-import AuthContainer from '../containers/AuthContainer';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Query, Mutation } from 'react-apollo';
+import { Row, Col, Text1, Text3, Input, Button } from 'components';
+import { colors } from 'theme';
+import { login } from 'queries/user';
 
 export default class LoginScreen extends React.Component {
 
-  static navigationOptions = {
-    title: 'Welcome',
-  };
+  state = {
+    phone: '',
+  }
+
+  setPhone = (v) => {
+    this.setState({ phone: v })
+  }
 
   render() {
-    const { navigate } = this.props.navigation;
+    const { phone } = this.state;
     return (
-      <View flex={1} backgroundColor="#fff">
-        <View flex={1} alignItems='center' justifyContent='center' marginLeft="10%" marginRight="10%">
-          <Subscribe to={[AuthContainer]}>
-            {({ state }) => (
-              <Text fontSize={25}>{state.email} p!</Text>
-            )}
-          </Subscribe>
-          <TouchableOpacity onPress={() => navigate('ProfileScreen', { name: 'Jane' })}>
-            <Text>
-              "Go to Jane's profile"
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigate('ProfileScreen', { name: 'Jane' })}>
-            <Text>
-              Increment
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+      <Col flex={1} align="center">
+        <Row flex={0.2} bgColor="#222" justify="center" align="center" pad={20}>
+          <Text3 color={colors.white} value="Welcome to React 123 ⚛️" />
+        </Row>
+        <Row flex={0.2}>
+          <Text1 value="To get started, edit src/App.js and save to reload. 123" />
+        </Row>
+        <Row flex={0.2}>
+          <Input value={this.state.phone} onChange={this.setPhone} />
+        </Row>
+        <Row flex={0.2}>
+          <Mutation mutation={login} variables={{ params: { phone }}}>
+            {(mutate, { loading, error, data }) => {
+              if (loading) return <Text1 value="Loading" />;
+              if (error) return <Text1 value="Err" />;
+
+              return (
+                <Button value={'Text this is'} onClicked={mutate} />
+              );
+            }}
+          </Mutation>
+        </Row>
+      </Col>
     );
   }
 }

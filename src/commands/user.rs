@@ -1,73 +1,88 @@
 use diesel::pg::PgConnection;
 use validator::Validate;
 use errors::WebError;
-use models::user::User;
-use db;
+use models::user::{User, NewUser, UpdateUser};
 use utils::auth;
+use services::sms;
+use graphql::context::Context;
 
 #[derive(Clone, GraphQLInputObject, Validate)]
 pub struct SignUpParams {
-  email: String,
-  password: String,
+  #[validate(length(min = "10", max = "15"))]
+  pub phone: String,
 }
 
-pub struct SignUpResponse {
-  user: User,
-  token: String,
+pub fn sign_up(conn: &PgConnection, params: SignUpParams) -> Result<bool, WebError> {
+  params.validate()?;
+  let exists = User::exists_by_phone(conn, &params.phone)?;
+  if exists {
+    return Err(WebError::ValidationMessage("Phone number has already been taken"));
+  }
+  let user = User::create(
+    conn,
+    NewUser {
+      phone: &params.phone,
+    },
+  )?;
+  sms::send_otp(&user.phone)?;
+  Ok(true)
 }
-
-// #[derive(Clone, Insertable, GraphQLInputObject, Validate)]
-// #[table_name = "users"]
-// pub struct CreateUserData {
-//   #[validate(length(min = "3"))]
-//   pub username: String,
-//   #[validate(email)]
-//   pub email: String,
-//   #[validate(length(min = "6"))]
-//   pub hash: String,
-// }
-
-// pub fn sign_up(conn: &PgConnection, params: SignUpParams) ->
-// Result<SignUpResponse, WebError> {   params.validate()?;
-//   let exists = db::users::exists_by_email(conn, params.email)?;
-//   if exists {
-//     return Err(WebError::Validation("email has already been taken"));
-//   }
-//   let user = db::users::create(conn, db::users::NewUser{
-//     email: params.email,
-//     password: params.password,
-//   })?;
-//   let token = auth::create_token(user.id);
-//   Ok(SignUpResponse{
-//     user: user,
-//     token: token,
-//   })
-// }
 
 #[derive(Clone, GraphQLInputObject, Validate)]
 pub struct LoginParams {
-  email: String,
-  password: String,
+  phone: String,
 }
 
-pub struct LoginResponse {
+// #[validate]
+// #[exists]
+pub fn login(conn: &PgConnection, params: LoginParams) -> Result<bool, WebError> {
+  params.validate()?;
+  let user = User::find_one_by_phone(conn, &params.phone)?;
+  sms::send_otp(&user.phone)?;
+  Ok(true)
+}
+
+#[derive(Clone, GraphQLInputObject, Validate)]
+pub struct VerifyParams {
+  phone: String,
+  otp: String,
+}
+
+pub struct VerifyResponse {
   user: User,
   token: String,
 }
 
-use graphql::context::Context;
+graphql_object!(VerifyResponse: Context | &self | {
+  field user() -> &User {
+     &self.user
+  }
 
-graphql_object!(LoginResponse: Context | &self | {});
+  field token() -> &str {
+    &self.token
+  }
+});
 
-// #[validate]
-// #[exists]
-pub fn login(conn: &PgConnection, params: LoginParams) -> Result<LoginResponse, WebError> {
+pub fn verify(conn: &PgConnection, params: VerifyParams) -> Result<VerifyResponse, WebError> {
   params.validate()?;
-  let user = db::users::find_one_by_email(conn, params.email)?;
-  auth::check_password(&params.password, &user.password)?;
+  let user = User::find_one_by_phone(conn, &params.phone)?;
+  sms::verify_otp(&params.phone, &params.otp)?;
   let token = auth::create_token(user.id);
-  Ok(LoginResponse {
+  Ok(VerifyResponse {
     user: user,
     token: token,
   })
+}
+
+
+#[derive(Clone, GraphQLInputObject, Validate)]
+pub struct RetryParams {
+  phone: String,
+}
+
+pub fn retry_otp(conn: &PgConnection, params: RetryParams) -> Result<bool, WebError> {
+  params.validate()?;
+  let user = User::find_one_by_phone(conn, &params.phone)?;
+  sms::retry_otp(&user.phone)?;
+  Ok(true)
 }

@@ -21,7 +21,7 @@ pub fn setup() {
     })
     .level(log::LevelFilter::Info)
     .chain(std::io::stdout())
-    .chain(fern::log_file("output.log").expect("Could not open log file output.log"))
+    // .chain(fern::log_file("output.log").expect("Could not open log file output.log"))
     .apply()
     .expect("Could not initialize logger");
   info!("setting up on stdout");

@@ -41,11 +41,9 @@
 //   }
 // }
 
-
 use jwt;
-use serde_json;
 use chrono::{Duration, Utc};
-use config::{SECRET, TOKEN_PREFIX};
+use config::{SECRET};
 use crypto::scrypt::{scrypt_check, scrypt_simple, ScryptParams};
 use errors::WebError;
 
@@ -55,14 +53,16 @@ pub struct Token {
   pub user_id: i32,
 }
 
+#[allow(dead_code)]
 pub fn create_hash(password: String) -> String {
   scrypt_simple(&password, &ScryptParams::new(14, 8, 1)).expect("hash error")
 }
 
+#[allow(dead_code)]
 pub fn check_password(password: &String, hash: &String) -> Result<bool, WebError> {
   match scrypt_check(&password, &hash).unwrap() {
     true => Ok(true),
-    false => Err(WebError::Validation("invalid credentials")),
+    false => Err(WebError::ValidationMessage("invalid credentials")),
   }
 }
 

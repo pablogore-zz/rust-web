@@ -1,0 +1,21 @@
+{
+  "presets": [
+    "react-native"
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "alias": {
+          "components": "./ui/src/components",
+          "screens": "./ui/src/screens",
+          "queries": "./ui/src/queries",
+          "theme": "./ui/src/theme"
+        }
+      }
+    ],
+    "transform-class-properties",
+    "transform-dev",
+    "react-native-web"
+  ]
+}

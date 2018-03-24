@@ -1,10 +1,17 @@
 use juniper;
 use diesel;
 use validator;
+use reqwest;
 
 quick_error! {
     #[derive(Debug)]
     pub enum WebError {
+        Reqwest(err: reqwest::Error) {
+            from()
+            description("Reqwest error")
+            display("Reqwest error: {}", err)
+            cause(err)
+        }
         Diesel(err: diesel::result::Error) {
             from()
             description("Diesel error")
@@ -26,10 +33,15 @@ quick_error! {
             description("validator errors")
             display("Validator errors: {:?}", err) // this needs to be changed
         }
-        Validation(desc: &'static str) {
+        ValidationMessage(desc: &'static str) {
             from()
             description(desc)
-            display("Error {}", desc)
+            display("{}", desc)
+        }
+        Validation(desc: String) {
+            from()
+            description(desc)
+            display("{}", desc)
         }
     }
 }

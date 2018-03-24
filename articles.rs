@@ -1,15 +1,15 @@
-use diesel;
-use diesel::prelude::*;
-use schema::articles;
-use schema::users;
-use schema::favorites;
-use diesel::pg::PgConnection;
-use models::user::User;
-use slug;
-use rand::{self, Rng};
+// use diesel;
+// use diesel::prelude::*;
+// use schema::articles;
+// use schema::users;
+// use schema::favorites;
+// use diesel::pg::PgConnection;
+// use models::user::User;
+// use slug;
+// use rand::{self, Rng};
 
-const SUFFIX_LEN: usize = 6;
-const DEFAULT_LIMIT: i64 = 20;
+// const SUFFIX_LEN: usize = 6;
+// const DEFAULT_LIMIT: i64 = 20;
 
 // #[derive(Insertable)]
 // #[table_name = "articles"]

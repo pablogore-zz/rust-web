@@ -1,18 +1,18 @@
-use diesel;
-use diesel::prelude::*;
-use schema::articles;
-use schema::users;
-use schema::comments;
-use diesel::pg::PgConnection;
-use models::user::User;
+// use diesel;
+// use diesel::prelude::*;
+// use schema::articles;
+// use schema::users;
+// use schema::comments;
+// use diesel::pg::PgConnection;
+// use models::user::User;
 
-#[derive(Insertable)]
-#[table_name = "comments"]
-struct NewComment<'a> {
-    body: &'a str,
-    author: i32,
-    article: i32,
-}
+// #[derive(Insertable)]
+// #[table_name = "comments"]
+// struct NewComment<'a> {
+//     body: &'a str,
+//     author: i32,
+//     article: i32,
+// }
 
 // pub fn create(conn: &PgConnection, author: i32, slug: &str, body: &str) -> CommentJson {
 //     let article_id = articles::table

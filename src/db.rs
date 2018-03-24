@@ -1,7 +1,3 @@
-pub mod users;
-pub mod articles;
-pub mod comments;
-
 use std::ops::Deref;
 
 use diesel::pg::PgConnection;

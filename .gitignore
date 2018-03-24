@@ -12,8 +12,8 @@ Cargo.lock
 /target/
 **/*.rs.bk
 *.log
-ui/.cache
-ui/node_modules
-ui/dist
+.cache
+node_modules
+dist
 build
 .gradle
