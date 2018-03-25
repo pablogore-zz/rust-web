@@ -4,6 +4,8 @@ import { View, Text } from 'react-native';
 import { number, string } from 'prop-types';
 import Input from './Input';
 import Button from './Button';
+import Alert from './Alert';
+import Loader from './Loader';
 import { colors } from '../theme';
 
 class Box extends React.Component {
@@ -82,4 +84,6 @@ export {
   Text4,
   Text5,
   Text6,
+  Alert,
+  Loader,
 };

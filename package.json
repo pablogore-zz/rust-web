@@ -9,10 +9,10 @@
     "preset": "react-native"
   },
   "scripts": {
-    "web": "parcel ui/index.html",
-    "mobile": "rm -rf /tmp/metro-cache-* && react-native start --root ./ui",
+    "web": "NODE_ENV=web parcel ui/index.html",
+    "mobile": "rm -rf /tmp/metro-cache-* && adb reverse tcp:8000 tcp:8000 && adb reverse tcp:8081 tcp:8081 && react-native start --root ./ui",
     "android-emu": "emulator -avd Test",
-    "android": "rm -rf /tmp/metro-cache-* && adb reverse tcp:8000 tcp:8000 && react-native run-android --root ui"
+    "android": "rm -rf /tmp/metro-cache-* && react-native run-android --root ui"
   },
   "dependencies": {
     "apollo-boost": "0.1.3",

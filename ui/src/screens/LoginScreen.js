@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Query, Mutation } from 'react-apollo';
-import { Row, Col, Text1, Text3, Input, Button } from 'components';
+import { Row, Col, Text1, Text3, Input, Button, Alert, Loader } from 'components';
 import { colors } from 'theme';
 import { login } from 'queries/user';
 
@@ -29,13 +29,17 @@ export default class LoginScreen extends React.Component {
           <Input value={this.state.phone} onChange={this.setPhone} />
         </Row>
         <Row flex={0.2}>
-          <Mutation mutation={login} variables={{ params: { phone }}}>
+          <Mutation mutation={login}>
             {(mutate, { loading, error, data }) => {
-              if (loading) return <Text1 value="Loading" />;
-              if (error) return <Text1 value="Err" />;
-
+              console.log('loading', loading);
+              if (loading) {
+                <Loader />;
+              }
+              if (error) {
+                Alert.alert('Oops..', 'Phone number is not valid');
+              };
               return (
-                <Button value={'Text this is'} onClicked={mutate} />
+                <Button value={'Text this is'} onClicked={() => mutate({ variables: { params: { phone } } })} />
               );
             }}
           </Mutation>

@@ -15,7 +15,13 @@
       }
     ],
     "transform-class-properties",
-    "transform-dev",
-    "react-native-web"
-  ]
+    "transform-dev"
+  ],
+  "env": {
+    "web": {
+      "plugins": [
+        "react-native-web"
+      ]
+    }
+  }
 }
