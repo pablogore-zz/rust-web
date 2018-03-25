@@ -1,11 +1,11 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, TextInput, Platform } from 'react-native';
-import { colors } from '../theme';
-import { Row, Text3 } from './index';
-import { COUNTRIES } from 'constants';
 import DeviceInfo from 'react-native-device-info';
 import CountryPicker, { getAllCountries } from 'react-native-country-picker-modal';
+import { Row, Text3 } from 'components';
+import { COUNTRIES } from 'constants';
+import { PRIMARY } from 'colors';
 
 const styles = StyleSheet.create({
   countryPicker: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     margin: 0,
     flex: 1,
     fontSize: 20,
-    color: colors.primary,
+    color: PRIMARY,
   },
 });
 
@@ -68,18 +68,18 @@ export default class PhoneInput extends React.Component {
     const { value, onChange, onSubmit } = this.props;
     return (
       <Row align="center" marginTop={30}>
-        <Row marginLeft={10} marginRight={10}>
+        <Row marginLeft={40} marginRight={10}>
           <CountryPicker style={styles.countryPicker} countryList={COUNTRIES} cca2={cca2} translation="eng" onChange={this.setCountry} closeable />
         </Row>
         <Row marginRight={10}>
-          <Text3 fontWeight="bold" color={colors.primary} value={`+${cc}`} />
+          <Text3 fontWeight="bold" color={PRIMARY} value={`+${cc}`} />
         </Row>
         <TextInput ref={this.sefInputRef} name='phoneNumber' type='TextInput' underlineColorAndroid='transparent'
           autoCapitalize='none' autoCorrect={false} onChangeText={this.setText}
           placeholder='Phone Number' keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
           style={styles.phone} value={value}
-          returnKeyType='go' autoFocus placeholderTextColor={colors.primary}
-          selectionColor={colors.primary} maxLength={cca2 === 'IN' ? 10 : 15} onSubmitEditing={onSubmit} />
+          returnKeyType='go' autoFocus placeholderTextColor={PRIMARY}
+          selectionColor={PRIMARY} maxLength={cca2 === 'IN' ? 10 : 15} onSubmitEditing={onSubmit} />
       </Row>
     );
   }

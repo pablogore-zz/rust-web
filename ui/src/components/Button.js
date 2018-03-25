@@ -1,7 +1,8 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { colors, vw } from 'theme';
+import { PRIMARY, WHITE } from 'colors';
+import { vw } from 'utils/window';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,12 +10,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     borderRadius: 5,
-    backgroundColor: colors.primary,
+    backgroundColor: PRIMARY,
     width: vw(80),
   },
   text: {
     fontSize: 16,
-    color: colors.white,
+    color: WHITE,
     fontFamily: 'Helvetica',
     fontWeight: 'bold',
   },

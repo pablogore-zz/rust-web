@@ -10,9 +10,9 @@
           "components": "./src/components",
           "screens": "./src/screens",
           "queries": "./src/queries",
-          "theme": "./src/theme",
           "constants": "./src/constants",
-          "colors": "./src/colors"
+          "colors": "./src/colors",
+          "utils": "./src/utils"
         }
       }
     ],

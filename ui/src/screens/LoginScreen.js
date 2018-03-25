@@ -2,10 +2,14 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Query, Mutation } from 'react-apollo';
 import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, Button, Alert, Loader, ErrorBox } from 'components';
-import { colors } from 'theme';
+import { GRAY, GRAY_LIGHT } from 'colors';
 import { login } from 'queries/user';
 
 export default class LoginScreen extends React.Component {
+
+  static navigationOptions = {
+    header: null
+  }
 
   state = {
     cca2: '',
@@ -45,7 +49,7 @@ export default class LoginScreen extends React.Component {
       <Screen>
         <Col marginTop={30}>
           <Row justify="center">
-            <Text2 color={colors.textGrayBold} value={'Whats your phone number?'} />
+            <Text2 color={GRAY} value={'Whats your phone number?'} />
           </Row>
           <PhoneInput value={phone} onChange={this.setPhone} onSubmit={this.onSubmit} />
           <Row justify="center" marginTop={30}>
@@ -64,7 +68,7 @@ export default class LoginScreen extends React.Component {
             </Mutation>
           </Row>
           <Row margin={30}>
-            <Text4 color={colors.gray} value={`By tapping "Send confirmation code" above, we will send you an SMS to confirm your phone number. Message & data rates may apply.`} />
+            <Text4 color={GRAY_LIGHT} value={`By tapping "Send confirmation code" above, we will send you an SMS to confirm your phone number. Message & data rates may apply.`} />
           </Row>
         </Col>
       </Screen>

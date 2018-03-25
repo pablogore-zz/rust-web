@@ -8,7 +8,7 @@ import Button from './Button';
 import Alert from './Alert';
 import Loader from './Loader';
 import ErrorBox from './ErrorBox';
-import { colors } from '../theme';
+import { BLACK, WHITE } from 'colors';
 
 class Box extends React.Component {
 
@@ -53,7 +53,7 @@ class TextRow extends React.Component {
   }
 
   static defaultProps = {
-    color: colors.black,
+    color: BLACK,
   }
 
   static build = (fontSize) => ({ color, fontWeight, value }) => <TextRow fontSize={fontSize} fontWeight={fontWeight} color={color} value={value} />
@@ -75,7 +75,7 @@ const Col = (props) => (
 );
 
 const Screen = (props) => (
-  <Col bgColor={colors.white} flex={1} align="center" {...props} />
+  <Col bgColor={WHITE} flex={1} align="center" {...props} />
 );
 
 const Text1 = TextRow.build(32);

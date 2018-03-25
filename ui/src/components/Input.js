@@ -1,18 +1,19 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
-import { colors, vw } from '../theme';
+import { TRANSPARENT, GRAY_1, BLACK } from 'colors';
+import { vw } from 'utils/window';
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
-    backgroundColor: colors.transparent,
+    backgroundColor: TRANSPARENT,
     borderBottomWidth: 1,
-    borderColor: colors.borderGray,
+    borderColor: GRAY_1,
   },
   element: {
     fontSize: 12,
-    color: colors.black,
+    color: BLACK,
     marginTop: 0,
     marginBottom: 0,
     padding: 0,
@@ -28,7 +29,7 @@ const Input = ({ value = '', placeHolder = '', isSecure = false, width = vw(80),
       secureTextEntry={isSecure}
       placeholder={placeHolder}
       value={value}
-      placeholderTextColor={colors.black}
+      placeholderTextColor={BLACK}
       onChangeText={onChange}
       underlineColorAndroid="transparent"
     />

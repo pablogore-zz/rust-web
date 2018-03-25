@@ -1,7 +1,7 @@
 import React from 'react';
 import { shape, string, arrayOf } from 'prop-types';
 import { Text4 } from './index';
-import { colors } from 'theme';
+import { RED } from 'colors';
 
 export default class ErrorBox extends React.Component {
 
@@ -25,7 +25,7 @@ export default class ErrorBox extends React.Component {
       message = 'Oops.. Something went wrong';
     }
     return (
-      <Text4 color={colors.red} value={message} />
+      <Text4 color={RED} value={message} />
     );
   }
 }

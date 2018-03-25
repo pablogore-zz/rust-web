@@ -1,7 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { colors } from 'theme';
+import PRIMARY from 'colors';
 
 export default () => (
-  <ActivityIndicator size="large" color={colors.primary} />
+  <ActivityIndicator size="large" color={PRIMARY} />
 );
