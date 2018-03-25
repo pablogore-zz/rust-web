@@ -4,6 +4,7 @@ import { View, Text } from 'react-native';
 import { number, string } from 'prop-types';
 import Input from './Input';
 import PhoneInput from './PhoneInput';
+import OtpInput from './OtpInput';
 import Button from './Button';
 import Alert from './Alert';
 import Loader from './Loader';
@@ -92,6 +93,7 @@ export {
   Button,
   Input,
   PhoneInput,
+  OtpInput,
   Text1,
   Text2,
   Text3,

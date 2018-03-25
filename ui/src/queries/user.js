@@ -8,7 +8,7 @@ export const UserPropType = shape({
 
 export const UserFragment = gql`
   fragment UserFragment on User {
-    _id
+    id
     phone
   }
 `;

@@ -7,6 +7,7 @@ const client = new ApolloClient({
     credentials: 'include'
   },
   request: (operation) => {
+    console.log('operation', operation);
     return AsyncStorage.getItem('token')
       .then((token) => {
         operation.setContext({

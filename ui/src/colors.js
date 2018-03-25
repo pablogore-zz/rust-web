@@ -1,7 +1,7 @@
 export const PRIMARY = '#744BAC';
 export const PRIMARY_LIGHT = '#F6FDFE';
 export const SECONDARY = '#2A648E';
-export const GRAY = '#A9A9A9';
+export const GRAY = '#797979';
 export const GRAY_LIGHT = '#B0B0B0';
 export const RED = '#F54B5E';
 export const GREEN = '#3FCC97';

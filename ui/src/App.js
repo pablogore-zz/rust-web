@@ -7,6 +7,7 @@ import client from './client';
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import VerifyScreen from './screens/VerifyScreen';
 
 const Navigator = StackNavigator({
   SplashScreen: {
@@ -17,6 +18,9 @@ const Navigator = StackNavigator({
   },
   ProfileScreen: {
     screen: ProfileScreen
+  },
+  VerifyScreen: {
+    screen: VerifyScreen
   },
 });
 
