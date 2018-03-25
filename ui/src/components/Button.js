@@ -1,34 +1,38 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { string, func } from 'prop-types';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { colors, vw } from 'theme';
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: 40,
-    width: vw(70),
-    borderWidth: 1,
-    borderRadius: 40,
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: colors.primary,
+    width: vw(80),
   },
-  element: {
-    fontSize: 10,
+  text: {
+    fontSize: 16,
+    color: colors.white,
+    fontFamily: 'Helvetica',
+    fontWeight: 'bold',
   },
 });
 
-const Button = ({ isLoading = false, marginTop = 0, color = colors.black, value = '', onClicked }) => {
-  if (isLoading) {
+export default class Button extends React.Component {
+
+  static propTypes = {
+    value: string.isRequired,
+    onClicked: func.isRequired,
+  }
+
+  render() {
+    const { value, onClicked } = this.props;
     return (
-      <View style={[styles.container, { marginTop, borderColor: color }]}>
-        <ActivityIndicator size="large" color={color} />
-      </View>
+      <TouchableOpacity style={styles.container} onPress={onClicked}>
+        <Text style={styles.text}>{value}</Text>
+      </TouchableOpacity>
     );
   }
-  return (
-    <TouchableOpacity style={[styles.container, { marginTop, borderColor: color }]} onPress={onClicked}>
-      <Text style={[styles.element, { color }]}>{value}</Text>
-    </TouchableOpacity>
-  );
-};
-
-export default Button;
+}

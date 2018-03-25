@@ -1,4 +1,5 @@
 import React from 'react';
+import { string, func } from 'prop-types';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { colors, vw } from '../theme';
 
@@ -33,5 +34,13 @@ const Input = ({ value = '', placeHolder = '', isSecure = false, width = vw(80),
     />
   </View>
 );
+
+// {
+//       height: 50,
+//       textAlign: 'center',
+//       fontSize: 40,
+//       fontWeight: 'bold',
+//       // fontFamily: 'Courier'
+//     }
 
 export default Input;

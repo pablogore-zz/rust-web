@@ -12,6 +12,7 @@ export const vh = (percentageHeight) => {
 
 export const colors = {
   primary: '#41C97A',
+  gray: '#A9A9A9',
   borderGray: '#A9A9A9',
   textLogoGray: '#4C4C4C',
   textGray: '#B2B2B2',
@@ -42,90 +43,4 @@ export const colors = {
   scrollingMenuBg: '#EDEDED',
   scrollingMenuText: '#7F7F7F',
   scrollingMenuSelected: '#1EC85F',
-};
-
-export const constants = {
-  fontSizeNormal: 16,
-  fontSizeLarge: 18,
-  fontSizeLarger: 20,
-  fontSizeLargest: 22,
-  fontSizeSmall: 14,
-  fontSizeSmaller: 12,
-  fontSizeSmallest: 10,
-  fontWeightBold: 'bold',
-  addButtonRadius: 25,
-  birthdayFormat: 'MM/DD/YYYY',
-  birthdayDisplayFormat: 'DD MMM YYYY',
-};
-
-export const base = {
-  backgroundImage: {
-    flex: 1,
-    alignSelf: 'stretch',
-    width: null,
-    height: null,
-  },
-  page: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.white,
-  },
-  vertical: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  horizontal: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  centerColumn: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  normalText: {
-    fontSize: constants.fontSizeNormal,
-    fontWeight: 'normal',
-    textAlign: 'center',
-    color: colors.black,
-  },
-  largeText: {
-    fontSize: constants.fontSizeLarge,
-    fontWeight: 'normal',
-    textAlign: 'center',
-    color: colors.black,
-  },
-  lightText: {
-    fontSize: constants.fontSizeSmall,
-    fontWeight: 'normal',
-    textAlign: 'center',
-    color: colors.textGray,
-  },
-  boldText: {
-    fontSize: constants.fontSizeLarge,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: colors.textGrayBold,
-  },
-  boldGreenText: {
-    fontSize: constants.fontSizeLarge,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    color: colors.textGreenBold,
-  },
-  link: {
-    color: colors.buttonRegisterBlue,
-    textDecorationLine: 'underline',
-  },
-  tabLabel: {
-    fontSize: 12,
-    color: colors.white,
-    marginTop: 8,
-  },
 };
