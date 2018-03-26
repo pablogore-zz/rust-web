@@ -1,7 +1,6 @@
 pub mod user;
 pub mod query;
 pub mod mutation;
-pub mod context;
 
 use juniper::RootNode;
 use self::query::QueryRoot;

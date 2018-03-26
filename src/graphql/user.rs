@@ -1,5 +1,5 @@
-use super::context::Context;
 use juniper::FieldResult;
+use utils::context::Context;
 use models::user::User;
 
 graphql_object!(User: Context |&self| {

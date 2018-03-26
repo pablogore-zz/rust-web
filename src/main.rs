@@ -58,8 +58,10 @@ use std::io::Cursor;
 use rocket::response;
 use rocket::http::{ContentType, Status};
 use rocket::State;
-use rocket::response::content;
-use juniper_rocket::{graphiql_source, GraphQLRequest, GraphQLResponse};
+use juniper_rocket::{GraphQLRequest, GraphQLResponse};
+use utils::auth::ReqToken;
+use utils::context::Context;
+use utils::graphql::EDITOR_HTML;
 
 #[derive(RustEmbed)]
 #[folder("ui/dist/")]
@@ -99,14 +101,23 @@ fn dist<'r>(file: PathBuf) -> response::Result<'r> {
 }
 
 #[get("/graphql")]
-fn graphiql() -> content::Html<String> {
-  graphiql_source("/graphql")
+fn graphiql<'r>() -> response::Result<'r> {
+  response::Response::build()
+    .header(ContentType::HTML)
+    .sized_body(Cursor::new(EDITOR_HTML))
+    .ok()
 }
 
 #[post("/graphql", format = "application/json", data = "<request>", rank = 2)]
-fn graphql(conn: db::Conn, request: GraphQLRequest, schema: State<graphql::Schema>) -> GraphQLResponse {
-  let context = graphql::context::Context::new(conn, None);
-  info!("REQ: {:?}", request);
+fn graphql(conn: db::Conn, token: ReqToken, request: GraphQLRequest, schema: State<graphql::Schema>) -> GraphQLResponse {
+  let user = match token.0 {
+    Some(auth) => match models::user::User::find_one(&conn.0, auth.user_id) {
+      Ok(user) => Some(user),
+      Err(_) => None,
+    },
+    None => None,
+  };
+  let context = Context::new(conn, user);
   request.execute(&schema, &context)
 }
 

@@ -2,10 +2,15 @@ use juniper;
 use diesel;
 use validator;
 use reqwest;
+use jwt;
 
 quick_error! {
     #[derive(Debug)]
     pub enum WebError {
+        Jwt(err: jwt::Error) {
+            from()
+            description("Jwt error")
+        }
         Reqwest(err: reqwest::Error) {
             from()
             description("Reqwest error")

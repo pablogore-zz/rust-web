@@ -4,7 +4,7 @@ name = "ncm"
 version = "0.0.0"
 
 [[bin]]
-name = "main"
+name = "ncm"
 path = "src/main.rs"
 
 [dependencies]

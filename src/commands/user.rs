@@ -3,8 +3,8 @@ use validator::Validate;
 use errors::WebError;
 use models::user::{User, NewUser, UpdateUser};
 use utils::auth;
+use utils::context::Context;
 use services::sms;
-use graphql::context::Context;
 
 #[derive(Clone, GraphQLInputObject, Validate)]
 pub struct SignUpParams {
@@ -18,12 +18,9 @@ pub fn sign_up(conn: &PgConnection, params: SignUpParams) -> Result<bool, WebErr
   if exists {
     return Err(WebError::ValidationMessage("Phone number has already been taken"));
   }
-  let user = User::create(
-    conn,
-    NewUser {
-      phone: &params.phone,
-    },
-  )?;
+  let user = User::create(conn, NewUser {
+    phone: &params.phone,
+  })?;
   sms::send_otp(&user.phone)?;
   Ok(true)
 }
@@ -67,7 +64,7 @@ pub fn verify(conn: &PgConnection, params: VerifyParams) -> Result<VerifyRespons
   params.validate()?;
   let user = User::find_one_by_phone(conn, &params.phone)?;
   sms::verify_otp(&params.phone, &params.otp)?;
-  let token = auth::create_token(user.id);
+  let token = auth::create_token(user.id)?;
   Ok(VerifyResponse {
     user: user,
     token: token,

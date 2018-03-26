@@ -1,5 +1,5 @@
 use juniper::FieldResult;
-use super::context::Context;
+use utils::context::Context;
 use commands::user;
 
 pub struct MutationRoot;
