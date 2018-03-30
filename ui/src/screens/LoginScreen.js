@@ -15,32 +15,32 @@ export default class LoginScreen extends React.Component {
     cca2: '',
     cc: '',
     phone: '',
+    localErr: '',
   }
 
   setPhone = (cca2, cc, phone) => {
     this.setState({ cca2, cc, phone });
   }
 
-  onSubmit = (gg) => {
-    console.log('gg', gg, this.state.phone);
-  }
-
   onClicked = async (mutate) => {
     const { cca2, cc, phone } = this.state;
+    if (phone.length < 10) {
+      return this.setState({ localErr: 'Your phone number is not valid' });
+    }
     const intlPhone = `${cc}${phone}`;
     await mutate({ variables: { params: { phone: intlPhone } } });
     this.props.navigation.navigate('VerifyScreen', { phone: intlPhone });
   }
 
   render() {
-    const { phone } = this.state;
+    const { phone, localErr } = this.state;
     return (
       <Screen>
         <Col marginTop={30}>
           <Row justify="center">
             <Text2 color={GRAY} value="What's your phone number?" />
           </Row>
-          <PhoneInput value={phone} onChange={this.setPhone} onSubmit={this.onSubmit} />
+          <PhoneInput value={phone} onChange={this.setPhone} />
           <Row justify="center" marginTop={30}>
             <Mutation mutation={login}>
               {(mutate, { loading, error }) => {
@@ -50,7 +50,7 @@ export default class LoginScreen extends React.Component {
                 return (
                   <Col>
                     <Button value="Send Confirmation Code" onClicked={() => this.onClicked(mutate)} />
-                    {error && <ErrorBox error={error} />}
+                    {(localErr || error) && <ErrorBox error={localErr || error} />}
                   </Col>
                 );
               }}

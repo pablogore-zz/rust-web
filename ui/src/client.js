@@ -1,21 +1,18 @@
-import { AsyncStorage } from 'react-native';
 import ApolloClient from 'apollo-boost';
+import storageUtils from 'utils/storage';
 
 const client = new ApolloClient({
   uri: 'http://localhost:8000/graphql',
-  fetchOptions: {
-    credentials: 'include'
-  },
-  request: (operation) => {
+  request: async (operation) => {
     console.log('operation', operation);
-    return AsyncStorage.getItem('token')
-      .then((token) => {
-        operation.setContext({
-          headers: {
-            authorization: token
-          }
-        });
-      })
+    const token = await storageUtils.get('token');
+    if (token) {
+      operation.setContext({
+        headers: {
+          authorization: token
+        }
+      });
+    }
   },
   onError: ({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {

@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { withState, compose } from 'recompose';
+import { Loader, ErrorBox } from 'components';
 
 const loadingHoc = withState('loading', 'setLoading', false);
 
@@ -14,16 +15,19 @@ export const withMutation = (query, func) => {
     props: ({ ownProps, mutate }) => ({
       [nameLoading]: ownProps.loading,
       [name]: () => {
-        func({ ...ownProps, mutate: async (options) => {
-          ownProps.setLoading(true);
-          try {
-            return await mutate(options);
-          } catch (e) {
-            throw e;
-          } finally {
-            ownProps.setLoading(false);
+        func({
+          ...ownProps,
+          mutate: async (options) => {
+            ownProps.setLoading(true);
+            try {
+              return await mutate(options);
+            } catch (e) {
+              throw e;
+            } finally {
+              ownProps.setLoading(false);
+            }
           }
-        }});
+        });
       },
     }),
   });
@@ -31,3 +35,4 @@ export const withMutation = (query, func) => {
 };
 
 export const withQuery = (query, options) => graphql(gql(query), options);
+

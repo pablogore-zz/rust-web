@@ -1,6 +1,5 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import { Row, Col, Screen, Button } from 'components';
+import { Row, Col, Screen, Button, Loader, ErrorBox, Query } from 'components';
 import { user } from 'queries/user';
 
 export default class SplashScreen extends React.Component {
@@ -9,15 +8,25 @@ export default class SplashScreen extends React.Component {
     header: null
   }
 
-  onGetInClicked = () => {
-    this.props.navigation.navigate('LoginScreen');
+  onGetInClicked = (data) => {
+    if (data) {
+      this.props.navigation.navigate('WelcomeScreen');
+    } else {
+      this.props.navigation.navigate('LoginScreen');
+    }
   }
 
   render() {
     const { navigation } = this.props;
     return (
       <Screen justify="center">
-        <Button value="Get In" onClicked={this.onGetInClicked} />
+        <Query query={user}>
+          {(data) => (
+            <Col>
+              <Button value="Get In" onClicked={() => this.onGetInClicked(data)} />
+            </Col>
+          )}
+        </Query>
       </Screen>
     );
   }

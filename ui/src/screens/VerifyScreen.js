@@ -4,6 +4,7 @@ import { Query, Mutation } from 'react-apollo';
 import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, OtpInput, Button, Alert, Loader, ErrorBox } from 'components';
 import { GRAY, GRAY_LIGHT } from 'colors';
 import { verify, retryOtp } from 'queries/user';
+import storageUtils from 'utils/storage';
 
 export default class VerifyScreen extends React.Component {
 
@@ -19,17 +20,12 @@ export default class VerifyScreen extends React.Component {
     this.setState({ otp });
   }
 
-  onSubmit = (gg) => {
-    console.log('gg', gg, this.state.otp);
-  }
-
   onClicked = async (mutate) => {
     const { params: { phone } } = this.props.navigation.state;
     const { otp } = this.state;
-    const res = await mutate({ variables: { params: { phone, otp } } });
-    console.log('res', res);
-    // await storageUtils.set()
-    this.props.navigation.navigate('SplashScreen');
+    const { data: { verify } } = await mutate({ variables: { params: { phone, otp } } });
+    await storageUtils.set('token', verify.token)
+    this.props.navigation.navigate('WelcomeScreen');
   }
 
   render() {
@@ -40,7 +36,7 @@ export default class VerifyScreen extends React.Component {
           <Row justify="center">
             <Text2 color={GRAY} value="What's your verification code?" />
           </Row>
-          <OtpInput value={otp} onChange={this.setOtp} onSubmit={this.onSubmit} />
+          <OtpInput value={otp} onChange={this.setOtp} />
           <Row justify="center" marginTop={30}>
             <Mutation mutation={verify}>
               {(mutate, { loading, error, data }) => {

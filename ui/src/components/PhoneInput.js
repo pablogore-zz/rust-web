@@ -1,7 +1,6 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, TextInput, Platform } from 'react-native';
-import DeviceInfo from 'react-native-device-info';
 import CountryPicker, { getAllCountries } from 'react-native-country-picker-modal';
 import { Row, Text3 } from 'components';
 import { COUNTRIES } from 'constants';
@@ -26,28 +25,11 @@ export default class PhoneInput extends React.Component {
   static propTypes = {
     value: string.isRequired,
     onChange: func.isRequired,
-    onSubmit: func.isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    let userLocaleCountryCode = DeviceInfo.getDeviceCountry();
-    const userCountryData = getAllCountries()
-      .filter(country => COUNTRIES.includes(country.cca2))
-      .filter(country => country.cca2 === userLocaleCountryCode)
-      .pop();
-    let cc = null;
-    let cca2 = userLocaleCountryCode;
-    if (!cca2 || !userCountryData) {
-      cca2 = 'IN';
-      cc = '91';
-    } else {
-      cc = userCountryData.callingCode;
-    }
-    this.state = {
-      cca2,
-      cc,
-    };
+  state = {
+    cca2: 'IN',
+    cc: '91',
   }
 
   setCountry = (v) => {
@@ -65,7 +47,7 @@ export default class PhoneInput extends React.Component {
 
   render() {
     const { cca2, cc } = this.state;
-    const { value, onChange, onSubmit } = this.props;
+    const { value, onChange } = this.props;
     return (
       <Row align="center" marginTop={30}>
         <Row marginLeft={40} marginRight={10}>
@@ -79,7 +61,7 @@ export default class PhoneInput extends React.Component {
           placeholder='Phone Number' keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
           style={styles.phone} value={value}
           returnKeyType='go' autoFocus placeholderTextColor={PRIMARY}
-          selectionColor={PRIMARY} maxLength={cca2 === 'IN' ? 10 : 15} onSubmitEditing={onSubmit} />
+          selectionColor={PRIMARY} maxLength={cca2 === 'IN' ? 10 : 15} />
       </Row>
     );
   }

@@ -19,6 +19,7 @@ export const user = gql`
       ...UserFragment
     }
   }
+  ${UserFragment}
 `;
 
 export const login = gql`

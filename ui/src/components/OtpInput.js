@@ -24,7 +24,6 @@ export default class OtpInput extends React.Component {
   static propTypes = {
     value: string.isRequired,
     onChange: func.isRequired,
-    onSubmit: func.isRequired,
   }
 
   setText = (v) => {
@@ -32,15 +31,15 @@ export default class OtpInput extends React.Component {
   }
 
   render() {
-    const { value, onChange, onSubmit } = this.props;
+    const { value, onChange } = this.props;
     return (
       <Row align="center" marginTop={30}>
         <TextInput name='otp' type='TextInput' underlineColorAndroid='transparent'
           autoCapitalize='none' autoCorrect={false} onChangeText={this.setText}
-          placeholder='_ _ _ _ _ _' keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
+          placeholder='_ _ _ _' keyboardType={Platform.OS === 'ios' ? 'number-pad' : 'numeric'}
           style={styles.phone} value={value}
           returnKeyType='go' autoFocus placeholderTextColor={PRIMARY}
-          selectionColor={PRIMARY} maxLength={6} onSubmitEditing={onSubmit} />
+          selectionColor={PRIMARY} maxLength={4} />
       </Row>
     );
   }
