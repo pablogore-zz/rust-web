@@ -8,6 +8,7 @@
   "jest": {
     "preset": "react-native"
   },
+  "parcel-rnw" : ["react-navigation"],
   "scripts": {
     "web": "parcel index.html",
     "android-emu": "emulator -avd Test",
