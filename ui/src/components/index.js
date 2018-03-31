@@ -6,9 +6,11 @@ import Input from './Input';
 import PhoneInput from './PhoneInput';
 import OtpInput from './OtpInput';
 import Button from './Button';
+import Icon from './Icon';
 import Alert from './Alert';
 import Loader from './Loader';
 import ErrorBox from './ErrorBox';
+import Header from './Header';
 import Query from './Query';
 import Mutation from './Mutation';
 import { WHITE } from 'colors';
@@ -46,9 +48,11 @@ export {
   Text4,
   Text5,
   Text6,
+  Icon,
   Alert,
   Loader,
   ErrorBox,
+  Header,
   Query,
   Mutation,
 };

@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import PushNotification from 'react-native-push-notification';
 import client from './client';
-import { SECONDARY } from './colors';
+import { PRIMARY } from './colors';
 
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -37,7 +37,7 @@ const TabScreen = TabNavigator({
       scrollEnabled: false,
       style: {
         marginBottom: -2,
-        backgroundColor: SECONDARY,
+        backgroundColor: PRIMARY,
       },
     },
   });
