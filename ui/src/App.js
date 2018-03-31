@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, View, PushNotificationIOS } from 'react-native';
 import { ApolloProvider } from 'react-apollo';
 import { StackNavigator, TabNavigator } from 'react-navigation';
@@ -78,19 +78,16 @@ PushNotification.configure({
   // popInitialNotification: true,
   requestPermissions: true,
 });
+// d9344d26-62ab-47ac-9d57-d254cf4dfd31
+// PushNotification.requestPermissions();
+// PushNotification.localNotification({
+//   largeIcon: "ic_launcher",
+//   smallIcon: "ic_notification",
+//   title: "My Notification Title",
+//   message: "My Notification Message",
+// });
 
-export default class App extends Component {
-
-  componentDidMount() {
-    console.log('GGG:');
-    // PushNotification.requestPermissions();
-    // PushNotification.localNotification({
-    //   largeIcon: "ic_launcher",
-    //   smallIcon: "ic_notification",
-    //   title: "My Notification Title",
-    //   message: "My Notification Message",
-    // });
-  }
+export default class App extends React.Component {
 
   render() {
     return (
@@ -100,5 +97,3 @@ export default class App extends Component {
     )
   }
 }
-
-// d9344d26-62ab-47ac-9d57-d254cf4dfd31

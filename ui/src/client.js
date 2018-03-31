@@ -1,10 +1,12 @@
 import ApolloClient from 'apollo-boost';
-import storageUtils from 'utils/storage';
+import storageUtils from './utils/storage';
+import log from './utils/log';
+import config from './config';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8000/graphql',
+  uri: config.uri,
   request: async (operation) => {
-    console.log('operation', operation);
+    log.info('operation', operation);
     const token = await storageUtils.get('token');
     if (token) {
       operation.setContext({
@@ -16,10 +18,10 @@ const client = new ApolloClient({
   },
   onError: ({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
-      console.log('graphQLErrors', graphQLErrors);
+      log.info('graphQLErrors', graphQLErrors);
     }
     if (networkError) {
-      console.log('networkError', networkError);
+      log.info('networkError', networkError);
     }
   },
   clientState: {
