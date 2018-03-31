@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Query, Mutation } from 'react-apollo';
-import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, Button, Alert, Loader, ErrorBox } from 'components';
-import { GRAY, GRAY_LIGHT } from 'colors';
-import { login } from 'queries/user';
+import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, Button, Alert, Loader, ErrorBox } from '../components';
+import { GRAY, GRAY_LIGHT } from '../colors';
+import { login } from '../queries/user';
 
 export default class LoginScreen extends React.Component {
 

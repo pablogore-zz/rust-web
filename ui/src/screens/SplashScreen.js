@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Col, Screen, Button, Loader, ErrorBox, Query } from 'components';
-import { user } from 'queries/user';
+import { Row, Col, Screen, Button, Loader, ErrorBox, Query } from '../components';
+import { user } from '../queries/user';
 
 export default class SplashScreen extends React.Component {
 

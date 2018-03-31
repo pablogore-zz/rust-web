@@ -2,7 +2,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { number, string } from 'prop-types';
-import { GRAY } from 'colors';
+import { GRAY } from '../colors';
 
 export default class TextRow extends React.Component {
 

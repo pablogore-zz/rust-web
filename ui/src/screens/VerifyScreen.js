@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Query, Mutation } from 'react-apollo';
-import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, OtpInput, Button, Alert, Loader, ErrorBox } from 'components';
-import { GRAY, GRAY_LIGHT } from 'colors';
-import { verify, retryOtp } from 'queries/user';
-import storageUtils from 'utils/storage';
+import { Row, Col, Screen, Text1, Text2, Text3, Text4, PhoneInput, OtpInput, Button, Alert, Loader, ErrorBox } from '../components';
+import { GRAY, GRAY_LIGHT } from '../colors';
+import { verify, retryOtp } from '../queries/user';
+import storageUtils from '../utils/storage';
 
 export default class VerifyScreen extends React.Component {
 

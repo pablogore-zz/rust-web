@@ -6,14 +6,14 @@ import Input from './Input';
 import PhoneInput from './PhoneInput';
 import OtpInput from './OtpInput';
 import Button from './Button';
-import Icon from './Icon';
+import Icon, { IconButton } from './Icon';
 import Alert from './Alert';
 import Loader from './Loader';
 import ErrorBox from './ErrorBox';
 import Header from './Header';
 import Query from './Query';
 import Mutation from './Mutation';
-import { WHITE } from 'colors';
+import { WHITE } from '../colors';
 
 const Row = (props) => (
   <Box flexDirection="row" {...props} />
@@ -49,6 +49,7 @@ export {
   Text5,
   Text6,
   Icon,
+  IconButton,
   Alert,
   Loader,
   ErrorBox,

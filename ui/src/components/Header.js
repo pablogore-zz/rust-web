@@ -2,9 +2,9 @@ import React from 'react';
 import { bool } from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import Svg, { G, Path } from 'react-native-svg';
-import { PRIMARY, WHITE } from 'colors';
-import { vw } from 'utils/window';
-import { Text3 } from '.';
+import { PRIMARY, WHITE } from '../colors';
+import { vw } from '../utils/window';
+import { Text3 } from './index';
 
 const styles = StyleSheet.create({
   container: {

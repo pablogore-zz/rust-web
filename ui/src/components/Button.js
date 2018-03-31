@@ -1,8 +1,8 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { PRIMARY, WHITE } from 'colors';
-import { vw } from 'utils/window';
+import { PRIMARY, WHITE } from '../colors';
+import { vw } from '../utils/window';
 
 const styles = StyleSheet.create({
   container: {

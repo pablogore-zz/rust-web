@@ -60,24 +60,24 @@ const Navigator = StackNavigator({
   },
 });
 
-PushNotification.configure({
-  onRegister: function (token) {
-    console.log('TOKEN:', token);
-  },
-  onNotification: function (notification) {
-    console.log('NOTIFICATION:', notification);
-    notification.finish(PushNotificationIOS.FetchResult.NoData);
-    // PushNotificationsHandler.requestPermissions()
-  },
-  senderID: "745661436636",
-  permissions: {
-    alert: true,
-    badge: true,
-    sound: true
-  },
-  // popInitialNotification: true,
-  requestPermissions: true,
-});
+// PushNotification.configure({
+//   onRegister: function (token) {
+//     console.log('TOKEN:', token);
+//   },
+//   onNotification: function (notification) {
+//     console.log('NOTIFICATION:', notification);
+//     notification.finish(PushNotificationIOS.FetchResult.NoData);
+//     // PushNotificationsHandler.requestPermissions()
+//   },
+//   senderID: "745661436636",
+//   permissions: {
+//     alert: true,
+//     badge: true,
+//     sound: true
+//   },
+//   popInitialNotification: true,
+//   requestPermissions: true,
+// });
 // d9344d26-62ab-47ac-9d57-d254cf4dfd31
 // PushNotification.requestPermissions();
 // PushNotification.localNotification({

@@ -1,8 +1,8 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
-import { TRANSPARENT, GRAY_1, BLACK } from 'colors';
-import { vw } from 'utils/window';
+import { TRANSPARENT, GRAY_1, BLACK } from '../colors';
+import { vw } from '../utils/window';
 
 const styles = StyleSheet.create({
   container: {

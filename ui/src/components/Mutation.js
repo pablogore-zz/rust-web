@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
-import { Loader, ErrorBox } from 'components';
+import { Loader, ErrorBox } from '../components';
 
 export default ({ query, children }) => (
   <Mutation>

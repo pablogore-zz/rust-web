@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Text3, Button, Screen } from 'components';
+import { Row, Col, Text3, Button, Screen } from '../components';
 
 export default class NotificationScreen extends React.Component {
 

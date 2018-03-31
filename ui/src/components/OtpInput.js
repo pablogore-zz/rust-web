@@ -1,9 +1,9 @@
 import React from 'react';
 import { string, func } from 'prop-types';
 import { StyleSheet, TextInput, Platform } from 'react-native';
-import { Row, Text3 } from 'components';
-import { COUNTRIES } from 'constants';
-import { PRIMARY } from 'colors';
+import { Row, Text3 } from './index';
+import { COUNTRIES } from '../constants';
+import { PRIMARY } from '../colors';
 
 const styles = StyleSheet.create({
   phone: {

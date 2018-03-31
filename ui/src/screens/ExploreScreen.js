@@ -1,6 +1,6 @@
 import React from 'react';
-import { Text3, Text5, Screen, Icon, Header } from 'components';
-import { WHITE } from 'colors';
+import { Text3, Text5, Screen, Icon, Header } from '../components';
+import { WHITE } from '../colors';
 
 export default class ExploreScreen extends React.Component {
 
