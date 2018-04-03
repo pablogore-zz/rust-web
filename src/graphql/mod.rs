@@ -9,5 +9,5 @@ use self::mutation::MutationRoot;
 pub type Schema = RootNode<'static, QueryRoot, MutationRoot>;
 
 pub fn init_schema() -> Schema {
-    Schema::new(QueryRoot {}, MutationRoot {})
+  Schema::new(QueryRoot {}, MutationRoot {})
 }

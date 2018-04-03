@@ -1,0 +1,7 @@
+[development]
+address = "localhost"
+log = "normal"
+port = 8000
+workers = 3
+# tls = { certs = "docker/certs/dev/cert.pem", key = "docker/certs/dev/key.pem" }
+limits = { forms = 327680 }

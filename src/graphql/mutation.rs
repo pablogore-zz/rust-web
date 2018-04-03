@@ -6,7 +6,7 @@ pub struct MutationRoot;
 
 graphql_object!(MutationRoot: Context |&self| {
 
-  field signup(&executor, params: user::SignUpParams) -> FieldResult<bool> {
+  field signUp(&executor, params: user::SignUpParams) -> FieldResult<bool> {
     Ok(user::sign_up(&*executor.context().conn, params)?)
   }
 

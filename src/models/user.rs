@@ -19,8 +19,8 @@ pub struct NewUser<'a> {
 #[derive(Deserialize, AsChangeset, Default, Clone)]
 #[table_name = "users"]
 pub struct UpdateUser {
-  pub  id: i32,
-  pub  phone: Option<String>,
+  pub id: i32,
+  pub phone: Option<String>,
 }
 
 impl User {

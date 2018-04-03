@@ -9,14 +9,14 @@ pub const MSG_91_SENDER_SMS_ID: &'static str = "PYROS2097";
 pub const MSG_91_AUTHKEY: &'static str = "204909AVZ2jjKHhlz5ab20d25";
 
 pub fn database_url() -> String {
-    match env::var("DATABASE_URL") {
-        Ok(val) => val,
-        Err(e) => {
-            if e == VarError::NotPresent {
-                "postgres://postgres:postgres@localhost:5432/postgres".to_owned()
-            } else {
-                panic!(e);
-            }
-        }
+  match env::var("DATABASE_URL") {
+    Ok(val) => val,
+    Err(e) => {
+      if e == VarError::NotPresent {
+        "postgres://postgres:postgres@localhost:5432/postgres".to_owned()
+      } else {
+        panic!(e);
+      }
     }
+  }
 }

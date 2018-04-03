@@ -1,7 +1,7 @@
 use diesel::pg::PgConnection;
 use validator::Validate;
 use errors::WebError;
-use models::user::{User, NewUser, UpdateUser};
+use models::user::{NewUser, UpdateUser, User};
 use utils::auth;
 use utils::context::Context;
 use services::sms;
@@ -16,17 +16,23 @@ pub fn sign_up(conn: &PgConnection, params: SignUpParams) -> Result<bool, WebErr
   params.validate()?;
   let exists = User::exists_by_phone(conn, &params.phone)?;
   if exists {
-    return Err(WebError::ValidationMessage("Phone number has already been taken"));
+    return Err(WebError::ValidationMessage(
+      "Phone number has already been taken",
+    ));
   }
-  let user = User::create(conn, NewUser {
-    phone: &params.phone,
-  })?;
+  let user = User::create(
+    conn,
+    NewUser {
+      phone: &params.phone,
+    },
+  )?;
   sms::send_otp(&user.phone)?;
   Ok(true)
 }
 
 #[derive(Clone, GraphQLInputObject, Validate)]
 pub struct LoginParams {
+  #[validate(length(min = "10", max = "15"))]
   phone: String,
 }
 
@@ -34,8 +40,16 @@ pub struct LoginParams {
 // #[exists]
 pub fn login(conn: &PgConnection, params: LoginParams) -> Result<bool, WebError> {
   params.validate()?;
-  let user = User::find_one_by_phone(conn, &params.phone)?;
-  sms::send_otp(&user.phone)?;
+  let exists = User::exists_by_phone(conn, &params.phone)?;
+  if !exists {
+    User::create(
+      conn,
+      NewUser {
+        phone: &params.phone,
+      },
+    )?;
+  }
+  sms::send_otp(&params.phone)?;
   Ok(true)
 }
 
@@ -70,7 +84,6 @@ pub fn verify(conn: &PgConnection, params: VerifyParams) -> Result<VerifyRespons
     token: token,
   })
 }
-
 
 #[derive(Clone, GraphQLInputObject, Validate)]
 pub struct RetryParams {
