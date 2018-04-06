@@ -1,5 +1,6 @@
 [tasks.setup]
 script = [
+    "grep -q ncm.org /etc/hosts || echo '127.0.0.1 ncm.org' | sudo tee -a /etc/hosts",
     "docker start postgres &>/dev/null || docker run -d --name postgres --net=host postgres:10.3"
 ]
 
@@ -21,4 +22,9 @@ script = [
 [tasks.run]
 script = [
     "cargo watch -x run"
+]
+
+[tasks.docker]
+script = [
+    "docker run -v cargo-cache:/root/.cargo -v \"$PWD:/volume\" --rm -it clux/muslrust:nightly-2018-03-02 cargo build --release"
 ]

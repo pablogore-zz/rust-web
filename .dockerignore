@@ -1,6 +1,2 @@
-target
-ui/node_modules
-ui/dist
-ui/.cache
-ui/android
-ui/ios
+*
+!target/x86_64-unknown-linux-musl/release/ncm

@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web:
+    # fip: 162.221.195.240
+    image: ncm:latest
+    build:
+      context: .
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    ports:
+      - "8080:80"
+    links:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://tesla:t3lsac0il@postgres:5432/ncm
+      ROCKET_WORKERS: 20
+      ROCKET_LOG: normal
+      ROCKET_ADDRESS: localhost
+      # ROCKET_TLS: '{certs="certs/dev/certs.pem",key="certs/dev/key.pem"}'
+      ROCKET_LIMITS: '{ forms = 327680 }'
+  postgres:
+    image: postgres:10.3
+    command: >
+      postgres -c 'shared_buffers=256MB' -c 'max_connections=20' -c 'max_connections=768MB' -c 'maintenance_work_mem=64MB'
+      -c 'min_wal_size=1GB' -c 'max_wal_size=2GB' -c 'checkpoint_completion_target=0.7' -c 'wal_buffers = 7864kB'
+      -c 'default_statistics_target=100' -c 'random_page_cost=1.1' -c 'effective_io_concurrency=200' -c 'work_mem=6553kB'
+    environment:
+      POSTGRES_USER: tesla
+      POSTGRES_PASSWORD: t3lsac0il
+      POSTGRES_DB: ncm
