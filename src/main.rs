@@ -5,6 +5,7 @@ extern crate colored;
 extern crate fern;
 #[macro_use]
 extern crate log;
+extern crate openssl_sys;
 
 extern crate serde;
 #[macro_use]
