@@ -9,7 +9,7 @@ export default class SplashScreen extends React.Component {
   }
 
   onGetInClicked = (data) => {
-    if (data) {
+    if (data.user !== null) {
       this.props.navigation.navigate('WelcomeScreen');
     } else {
       this.props.navigation.navigate('LoginScreen');
@@ -20,7 +20,7 @@ export default class SplashScreen extends React.Component {
     const { navigation } = this.props;
     return (
       <Screen justify="center">
-        <Query query={user}>
+        <Query query={user} fetchPolicy="network-only">
           {(data) => (
             <Col>
               <Button value="Get In" onClicked={() => this.onGetInClicked(data)} />
