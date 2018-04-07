@@ -26,5 +26,6 @@ script = [
 
 [tasks.docker]
 script = [
-    "docker run -v cargo-cache:/root/.cargo -v \"$PWD:/volume\" --rm -it clux/muslrust:nightly-2018-03-02 cargo build --release"
+    "docker run -v cargo-cache:/root/.cargo -v \"$PWD:/volume\" --rm -it clux/muslrust:nightly-2018-03-02 cargo build --release",
+    "docker build . -t pyros2097/ncm:latest"
 ]
