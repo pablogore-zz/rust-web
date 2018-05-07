@@ -5,7 +5,7 @@ use std::env::VarError;
 pub const DATE_FORMAT: &'static str = "%Y-%m-%dT%H:%M:%S%.3fZ";
 pub const SECRET: &'static str = "secret123";
 pub const MSG_91_API_ENDPOINT: &'static str = "http://control.msg91.com/api";
-pub const MSG_91_SENDER_SMS_ID: &'static str = "PYROS2097";
+pub const MSG_91_SENDER_SMS_ID: &'static str = "NCMBLR";
 pub const MSG_91_AUTHKEY: &'static str = "204909AVZ2jjKHhlz5ab20d25";
 
 pub fn database_url() -> String {

@@ -1,10 +1,14 @@
 
 import React from 'react';
+import { ScrollView, Picker } from 'react-native';
 import Box from './Box';
 import Text from './Text';
-import Input from './Input';
+import DateText from './DateText';
+import TextInput from './Input';
 import PhoneInput from './PhoneInput';
 import OtpInput from './OtpInput';
+import DateInput from './DateInput';
+import GenderInput from './GenderInput';
 import Button from './Button';
 import Icon, { IconButton } from './Icon';
 import Alert from './Alert';
@@ -27,6 +31,10 @@ const Screen = (props) => (
   <Col bgColor={WHITE} flex={1} align="center" {...props} />
 );
 
+const ScreenFull = (props) => (
+  <Col bgColor={WHITE} flex={1} {...props} />
+);
+
 const Text1 = Text.build(32);
 const Text2 = Text.build(24);
 const Text3 = Text.build(16);
@@ -38,21 +46,27 @@ export {
   Row,
   Col,
   Screen,
+  ScreenFull,
   Button,
-  Input,
+  TextInput,
   PhoneInput,
   OtpInput,
+  DateInput,
+  GenderInput,
+  DateText,
   Text1,
   Text2,
   Text3,
   Text4,
   Text5,
   Text6,
+  Picker,
   Icon,
   IconButton,
   Alert,
   Loader,
   ErrorBox,
+  ScrollView,
   Header,
   Query,
   Mutation,

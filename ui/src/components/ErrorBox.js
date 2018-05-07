@@ -32,12 +32,12 @@ export default class ErrorBox extends React.Component {
     return (
       <Col align="center" justify="center" marginTop={20}>
         <Text4 color={color} value={message} />
-        <Col align="center" justify="center" marginTop={10}>
+        {retry && <Col align="center" justify="center" marginTop={10}>
           <IconButton name="refresh" width="30" height="30" fill={color} onClicked={retry} />
           <Col marginTop={10}>
             <Text4 color={color} value={'Click to Refresh'} />
           </Col>
-        </Col>
+        </Col>}
       </Col>
     );
   }

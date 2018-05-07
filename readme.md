@@ -22,6 +22,7 @@ An example backend written in rust using rocket, diesel and juniper.
 9. cargo-script (cargo install -f cargo-script)
 10. node (wget http://nodejs.org/dist/v9.9.0/node-v9.9.0-linux-x64.tar.gz && sudo tar -C /usr/local --strip-components 1 -xzf node-v9.9.0-linux-x64.tar.gz)
 11. yarn (curl -o- -L https://yarnpkg.com/install.sh | bash)
+12. curl --silent https://raw.githubusercontent.com/srvrco/getssl/master/getssl > /usr/local/bin/getssl ; chmod 700 /usr/local/bin/getssl;
 
 ## Using
 1. cargo make setup
